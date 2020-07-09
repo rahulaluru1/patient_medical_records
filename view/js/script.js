@@ -15,15 +15,15 @@ function getData(id){
         var tr;
         var table=document.getElementById('patient-records-table').getElementsByTagName('table-body')[0];
         document.getElementById("table-header").innerHTML+=`<tr>
-        <td>${headers[0]}</td>
-        <td>${headers[1]}</td>
-        <td>${headers[2]}</td>
-        <td>${headers[3]}</td>
-        <td>${headers[4]}</td>
+        <td><b>${headers[0]}</b></td>
+        <td><b>${headers[1]}</b></td>
+        <td><b>${headers[2]}</b></td>
+        <td><b>${headers[3]}</b></td>
+        <td><b>${headers[4]}</b></td>
          
         </tr>`
         for(let i=0;i<res['data'].length;i++){
-            var d=new Date(res['data'][i].timestamp)
+            var d=new Date(res['data'][i+1].timestamp)
             var dia=res['data'][i].diagnosis.name+"(" +res['data'][i].diagnosis.id+")" ;
             var wei=res['data'][i].meta.weight;
             var docn=res['data'][i].doctor.name
