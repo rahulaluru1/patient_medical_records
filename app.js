@@ -9,5 +9,5 @@ app.listen(process.env.PORT || 8000, '0.0.0.0', function() {});
 const { method } = require("bluebird");
 const { response } = require("express");
 
-const fetch = require("node-fetch");
+
 module.exports = app;
