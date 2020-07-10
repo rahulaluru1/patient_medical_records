@@ -7,9 +7,22 @@ function checkOption(){
         document.getElementById("submit-btn").style.display='block';
     }
 }
-
+function loadTableHeader(){
+    // console.log("header clled")
+    if( document.getElementById("table-header").innerHTML==''){
+        document.getElementById("table-header").innerHTML+=`<tr>
+        <td><b>${headers[0]}</b></td>
+        <td><b>${headers[1]}</b></td>
+        <td><b>${headers[2]}</b></td>
+        <td><b>${headers[3]}</b></td>
+        <td><b>${headers[4]}</b></td>
+         
+        </tr>`
+    }
+    
+}
 function getData(id){
-    console.log("called");
+    // console.log("called");
     document.getElementById("loader-view").style.display='block';
     fetch(`https://jsonmock.hackerrank.com/api/medical_records?userId=`+id,{
     method:"GET",
@@ -23,21 +36,15 @@ function getData(id){
         document.getElementById("patient-height").innerHTML=res['data'][0].meta.height;
         var tr;
         var table=document.getElementById('patient-records-table').getElementsByTagName('table-body')[0];
-        document.getElementById("table-header").innerHTML+=`<tr>
-        <td><b>${headers[0]}</b></td>
-        <td><b>${headers[1]}</b></td>
-        <td><b>${headers[2]}</b></td>
-        <td><b>${headers[3]}</b></td>
-        <td><b>${headers[4]}</b></td>
-         
-        </tr>`
+        loadTableHeader();
         for(let i=0;i<res['data'].length;i++){
-            var d=new Date(res['data'][i+1].timestamp)
+            var date=new Date(res['data'][i].timestamp);
+            var d=date.getDay()+"-"+date.getMonth()+"-"+date.getFullYear();
             var dia=res['data'][i].diagnosis.name+"(" +res['data'][i].diagnosis.id+")" ;
             var wei=res['data'][i].meta.weight;
             var docn=res['data'][i].doctor.name
             document.getElementById("table-body").innerHTML+=`<tr>
-                                                            <td>${i}</td>
+                                                            <td>${i+1}</td>
                                                             <td>${d}</td>
                                                             <td>${dia}</td>
                                                             <td>${wei}</td>
