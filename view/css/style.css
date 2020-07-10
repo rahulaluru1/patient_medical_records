@@ -19,7 +19,7 @@ body {
 }
 
 #loader-view {
-    /*display: none;*/
+    display: none;
 }
 
 .loader-container {
@@ -61,6 +61,7 @@ body {
 
 
 button {
+    display: none;
     cursor: pointer;
     margin: 24px;
     padding: 6px 12px;

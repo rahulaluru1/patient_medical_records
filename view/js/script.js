@@ -1,12 +1,21 @@
 
-const headers = ['SL', 'Date', 'Diagnosis', 'Weight', 'Doctor'];
+const headers = ['SL', 'Date', 'Diagnosis', 'Weight', 'Doctor'];4
+
+function checkOption(){
+    if(document.getElementById("patient-select").value != -1){
+        // console.log("hvjb")
+        document.getElementById("submit-btn").style.display='block';
+    }
+}
 
 function getData(id){
     console.log("called");
+    document.getElementById("loader-view").style.display='block';
     fetch(`https://jsonmock.hackerrank.com/api/medical_records?userId=`+id,{
     method:"GET",
 }).then((response)=>{
     response.json().then((res)=>{
+        document.getElementById("loader-view").style.display='none';
         // console.log(res['data']);
         document.getElementById("loader-view").classList.add("hidden")
         document.getElementById("patient-name").innerHTML=res['data'][0].userName;
